@@ -14,10 +14,10 @@ var page_getProperties = function() {
   return copy;
 }
 
-chrome.devtools.panels.create("MySample","1.png","Panel.html");
+chrome.devtools.panels.create("ASample","1.png","Panel.html");
 
 chrome.devtools.panels.elements.createSidebarPane(
-    "MySample",
+    "ASample",
     function(sidebar) {
   function updateElementProperties() {
     sidebar.setExpression("(" + page_getProperties.toString() + ")()");

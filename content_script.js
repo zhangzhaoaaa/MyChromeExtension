@@ -7,8 +7,7 @@ s.onload = function() {
 
 window.addEventListener('message', function(event) {
     console.log('content_script.js got message:', event);
-    document.body.innerHTML = event.data.type+","+event.data.text;
-    
+    document.getElementById('chrome_extension_panleList').innerHTML = event.data.type+","+event.data.text;
 });
 
 
