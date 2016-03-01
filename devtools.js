@@ -14,7 +14,7 @@ var page_getProperties = function() {
   return copy;
 }
 
-chrome.devtools.panels.create("ASample","1.png","Panel.html");
+chrome.devtools.panels.create("ASample","","Panel.html");
 
 chrome.devtools.panels.elements.createSidebarPane(
     "ASample",

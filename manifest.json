@@ -5,13 +5,24 @@
   "devtools_page": "devtools.html",
   "manifest_version": 2,
   "background": { 
-  	"scripts": ["background.js"],
-  	 "persistent": false
+  	"scripts": ["backend/main.js"]
   },
-  "permissions" : ["tabs","http://*/*"],
+  "permissions" : ["tabs","http://*/*","https://*/*"],
   "content_scripts":[{
-		"matches":["http://*/*"],
-		"js":["content_script.js"]
-	}],
-  "web_accessible_resources": ["script.js"]
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["content_scripts/inject.js"],
+      "run_at": "document_end"
+    },
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["content_scripts/detect.js"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["content_scripts/jquery.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": ["content_scripts/lib_detect.js"]
 }
