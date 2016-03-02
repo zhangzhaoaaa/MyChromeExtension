@@ -31,3 +31,17 @@ var common = [{
     }
 ]
 
+/*function test(){
+
+};
+test.name = "mike";
+
+test.prototype.getAge = function(){
+    console.log('age....')
+}
+var t = new test();
+console.log(test,t);*/
+
+var sfFunc = function(){};
+sfFunc.ename = 'segmentfault';
+console.log(sfFunc);

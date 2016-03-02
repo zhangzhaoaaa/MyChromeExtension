@@ -4,5 +4,7 @@
 
 chrome.extension.onMessage.addListener(function(library, sender, sendResponse) {
     //run(library, sender.tab.id);
-    localStorage.setItem('libraries', library.split(","));
+    if (library != null && library != undefined){
+        localStorage.setItem('libraries', library);
+    }
 });
