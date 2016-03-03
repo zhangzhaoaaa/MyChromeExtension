@@ -3,9 +3,39 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title></title>
+    <script src="../content_scripts/esprima.js"></script>
     <script src="dispatch.js"></script>
+    <style>
+        span{
+            margin: 5px;
+        }
+        .left{
+            float: left;
+        }
+    </style>
 </head>
 <body>
-
+<table id="chrome_extension_panleList">
+    <tr>
+        <td>kkk</td>
+        <td>aaa</td>
+    </tr>
+    <tr>
+        <td>bbb</td>
+        <td>bbb</td>
+    </tr>
+    <tr>
+        <td>bbjjjb</td>
+        <td>bbb</td>
+    </tr>
+</table>
+<script>
+    var nodes = document.getElementById("chrome_extension_panleList").childNodes;
+    if (nodes.length > 0 && nodes[1]){
+        for (var i = 1,len = nodes[1].childNodes.length;i < len;i++){
+            nodes[1].childNodes[1].remove();
+        }
+    }
+</script>
 </body>
 </html>

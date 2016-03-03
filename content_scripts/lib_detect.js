@@ -10,17 +10,18 @@
      */
      function wait() {
         var encodeLibraries = function(libraries) {
-            /*var encoded = [];
+            var encoded = [],str = "";
             Object.keys(libraries).forEach(function(current,index,arr){
                 var bindArray = libraries[current];
+                var obj = {},
+                vstr = "";
                 bindArray.forEach(function(cur,ind,array){
-
+                    vstr += Object.keys(cur.context)[0]+",";
                 });
-                encoded.push(current);
-            });*/
-            console.log(libraries);
-            console.log(JSON.stringify(libraries));
-            return JSON.stringify(libraries);
+                str += current + ":" + vstr + ";";
+            });
+            console.log(str);
+            return str;
         };
         var detectLibraries = function() {
             var libraries = null;

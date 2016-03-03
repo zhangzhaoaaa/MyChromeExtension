@@ -1,34 +1,46 @@
 var addLibrary = function(library,arr) {
 
-    var container = document.createElement('div');
+    var container = document.createElement('tr');
 
-    var link = document.createElement('a');
-    link.href = '#';
-    link.innerHTML = library;
-    container.appendChild(link);
+    var td1 = document.createElement('td');
+    td1.innerHTML = library;
+    container.appendChild(td1);
 
-    var bindArray = arr[library];
-    var link1 = document.createElement('a');
-    bindArray.forEach(function(current,index,bindArr){
-        link1.href = '#';
-        link1.innerHTML = current["callback"];
-    });
-    container.appendChild(link1);
+    var bindArray = arr;
 
-
+    if (bindArray.length > 0){
+        var td2 = document.createElement('td');
+        bindArray.forEach(function(current,index,bindArr){
+            var span = document.createElement('span');
+            span.style.cssText="margin:5px";
+            span.innerHTML = current;
+            td2.appendChild(span);
+        });
+        container.appendChild(td2);
+    }
     document.getElementById('chrome_extension_panleList').appendChild(container);
 
 };
 
 document.getElementById("start").addEventListener('click', function () {
-    if (localStorage.getItem('libraries')!= null){
-        var libraries = localStorage.getItem('libraries');
-        if (libraries === null) return;
-        //window.location.reload();
-        //$('#chrome_extension_panleList').empty();
-        libraries = JSON.parse(libraries);
-        Object.keys(libraries).forEach(function(current,index,arr){
-            addLibrary(current,arr);
-        });
+
+    var libraries = localStorage.getItem('libraries');
+    //window.location.reload();
+    var nodes = document.getElementById("chrome_extension_panleList").childNodes;
+    if (nodes.length > 0){
+        for (var i = 1,len = nodes.length;i < len;i++){
+            document.getElementById("chrome_extension_panleList").removeChild(nodes[i]);
+        }
     }
+    setTimeout(function(){
+        if (libraries != null){
+            var libArr = libraries.split(";");
+            libArr.forEach(function(current,index,arr){ //;
+                var one = current.split(':');
+                var two = one[1].split(',');
+                addLibrary(one[0],two);
+            });
+        }
+    },200);
+
 });

@@ -23,14 +23,29 @@ setTimeout(function() {
         },
         '*' /!* targetOrigin: any *!/);
 }, 2000);*/
-var common = [{
-    name:'china'
-},
-    {
-        name:'usa'
+var common = {
+    getName: function () {
+        console.log('xxx');
     }
-]
+}
+var EB_Common = {};
+EB_Common.EventProxy = {};
+EB_Common.EventProxy._events = {
+    axa:[
+        {
+            context:{
+                templateApp:"k"
+            }
+        },
+        {
+            context:{
+                testApp:"k"
+            }
+        }
+    ]
+}
 
+//console.log(EB_Common.EventProxy._events.axa[0].callback.toString());
 /*function test(){
 
 };
@@ -42,6 +57,9 @@ test.prototype.getAge = function(){
 var t = new test();
 console.log(test,t);*/
 
-var sfFunc = function(){};
+/*var sfFunc = function(){};
 sfFunc.ename = 'segmentfault';
-console.log(sfFunc);
+console.log(sfFunc);*/
+
+var syntax = esprima.parse('EB_Common.EventProxy._events.axa[0].callback.toString()');
+console.log(syntax);
