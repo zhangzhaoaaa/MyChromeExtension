@@ -15,12 +15,26 @@
                 var bindArray = libraries[current];
                 var obj = {},
                 vstr = "";
-                bindArray.forEach(function(cur,ind,array){
-                    vstr += Object.keys(cur.context)[0]+",";
+                bindArray.forEach(function(cur,ind,array){//绑定对象数组
+                    var name = '';
+                    if (cur.context.appName){
+                        name = cur.context.appName;
+                    }else if (cur.context.el){
+                        var id = cur.context.el["id"];
+                        var iInx = id.indexOf("view");
+                        if (iInx != -1){
+                            name = id.substr(0,iInx);
+                        }else{
+                            name = id;
+                        }
+                    }else{
+                        name = '未确定';
+                    }
+                    vstr += name+",";
                 });
                 str += current + ":" + vstr + ";";
             });
-            console.log(str);
+            console.log("load...over...");
             return str;
         };
         var detectLibraries = function() {

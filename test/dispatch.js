@@ -61,5 +61,6 @@ console.log(test,t);*/
 sfFunc.ename = 'segmentfault';
 console.log(sfFunc);*/
 
+/*
 var syntax = esprima.parse('EB_Common.EventProxy._events.axa[0].callback.toString()');
-console.log(syntax);
+console.log(syntax);*/

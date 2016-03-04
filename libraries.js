@@ -18,20 +18,22 @@ var addLibrary = function(library,arr) {
         });
         container.appendChild(td2);
     }
-    document.getElementById('chrome_extension_panleList').appendChild(container);
+    document.getElementById('chrome_tbody').appendChild(container);
 
 };
 
-document.getElementById("start").addEventListener('click', function () {
-
-    var libraries = localStorage.getItem('libraries');
-    //window.location.reload();
-    var nodes = document.getElementById("chrome_extension_panleList").childNodes;
-    if (nodes.length > 0){
-        for (var i = 1,len = nodes.length;i < len;i++){
-            document.getElementById("chrome_extension_panleList").removeChild(nodes[i]);
+document.getElementById("clear").addEventListener('click', function () {
+    var allRows = document.getElementById("chrome_tbody").getElementsByTagName('tr');
+    if(allRows.length>1) {
+        for (var i = 1, len = allRows.length; i < len; i++) {
+            document.getElementById("chrome_tbody").deleteRow(1);
         }
     }
+});
+
+document.getElementById("start").addEventListener('click', function () {
+    var libraries = localStorage.getItem('libraries');
+    //window.location.reload();
     setTimeout(function(){
         if (libraries != null){
             var libArr = libraries.split(";");

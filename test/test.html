@@ -3,7 +3,6 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title></title>
-    <script src="../content_scripts/esprima.js"></script>
     <script src="dispatch.js"></script>
     <style>
         span{
@@ -15,27 +14,45 @@
     </style>
 </head>
 <body>
+<input type="button" id="start" value="start">
+<input type="button" id="clear" value="clear">
 <table id="chrome_extension_panleList">
-    <tr>
-        <td>kkk</td>
-        <td>aaa</td>
-    </tr>
-    <tr>
-        <td>bbb</td>
-        <td>bbb</td>
-    </tr>
-    <tr>
-        <td>bbjjjb</td>
-        <td>bbb</td>
-    </tr>
+    <tbody id="chrome_tbody">
+        <tr>
+            <td>Listener</td>
+            <td>App</td>
+        </tr>
+    </tbody>
 </table>
 <script>
-    var nodes = document.getElementById("chrome_extension_panleList").childNodes;
-    if (nodes.length > 0 && nodes[1]){
-        for (var i = 1,len = nodes[1].childNodes.length;i < len;i++){
-            nodes[1].childNodes[1].remove();
+
+    document.getElementById("clear").addEventListener('click', function () {
+        var allRows = document.getElementById("chrome_tbody").getElementsByTagName('tr');
+        if(allRows.length>1)
+            for (var i= 1,len=allRows.length;i<len;i++){
+                document.getElementById("chrome_tbody").deleteRow(1);
+            }
+    });
+
+    document.getElementById("start").addEventListener('click', function () {
+        var container = document.createElement('tr');
+        var td1 = document.createElement('td');
+        td1.innerHTML = 'aaa';
+        container.appendChild(td1);
+        var bindArray = ['xxxx','cccc'];
+
+        if (bindArray.length > 0){
+            var td2 = document.createElement('td');
+            bindArray.forEach(function(current,index,bindArr){
+                var span = document.createElement('span');
+                span.style.cssText="margin:5px";
+                span.innerHTML = current;
+                td2.appendChild(span);
+            });
+            container.appendChild(td2);
         }
-    }
+        document.getElementById('chrome_tbody').appendChild(container);
+    });
 </script>
 </body>
 </html>
