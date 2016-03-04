@@ -22,13 +22,17 @@ var addLibrary = function(library,arr) {
 
 };
 
-document.getElementById("clear").addEventListener('click', function () {
+var clearListeners = function (){
     var allRows = document.getElementById("chrome_tbody").getElementsByTagName('tr');
     if(allRows.length>1) {
         for (var i = 1, len = allRows.length; i < len; i++) {
             document.getElementById("chrome_tbody").deleteRow(1);
         }
     }
+};
+
+document.getElementById("clear").addEventListener('click', function () {
+    clearListeners();
 });
 
 document.getElementById("reload").addEventListener('click', function () {
@@ -38,6 +42,7 @@ document.getElementById("reload").addEventListener('click', function () {
 
 document.getElementById("start").addEventListener('click', function () {
     var libraries = localStorage.getItem('libraries');
+    clearListeners();
     setTimeout(function(){
         if (libraries != null){
             var libArr = libraries.split(";");
