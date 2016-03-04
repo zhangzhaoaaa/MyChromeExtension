@@ -4,6 +4,9 @@
 **/
 (function() {
 
+    window.test = function(){
+        alert('fuck');
+    }
     /**
      * Returns library, version pairs in format:
      * libraryName:version,libraryName:version...
@@ -55,6 +58,15 @@
 
     window.setTimeout(function() {
         wait();
+        var td1 = document.createElement('input');
+        td1.style.cssText = "display:none;"
+        td1.id = "chrome_trigger";
+        td1.type = "button";
+        document.body.appendChild(td1);
+        td1.addEventListener('click',function(){
+            wait();
+        });
+
     },2000);
 
 })();

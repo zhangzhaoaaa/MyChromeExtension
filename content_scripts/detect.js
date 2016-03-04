@@ -11,6 +11,16 @@ function wait() {
     }
 }
 
+function addRegister(){
+    var fireOnThis = document.getElementById('chrome_trigger');
+    var evObj = document.createEvent('MouseEvents');
+    evObj.initEvent('click', true, false );
+    fireOnThis.dispatchEvent( evObj );
+    window.setTimeout(function() {
+        wait();
+    },2000);
+}
+
 window.setTimeout(function() {
     wait();
 },2000);

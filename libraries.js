@@ -31,6 +31,11 @@ document.getElementById("clear").addEventListener('click', function () {
     }
 });
 
+document.getElementById("reload").addEventListener('click', function () {
+    chrome.devtools.inspectedWindow.eval("addRegister()",
+        { useContentScriptContext: true });
+});
+
 document.getElementById("start").addEventListener('click', function () {
     var libraries = localStorage.getItem('libraries');
     //window.location.reload();

@@ -8,3 +8,12 @@ chrome.extension.onMessage.addListener(function(library, sender, sendResponse) {
         localStorage.setItem('libraries', library);
     }
 });
+
+chrome.runtime.onConnect.addListener(function (port) {
+    if (port.name == "devtools-page") {
+        port.onDisconnect.addListener(function(port) {
+            localStorage.removeItem("libraries");
+            //alert("Last DevTools window closing.");
+        });
+    }
+});

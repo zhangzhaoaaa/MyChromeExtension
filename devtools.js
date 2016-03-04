@@ -26,3 +26,6 @@ chrome.devtools.panels.elements.createSidebarPane(
   chrome.devtools.panels.elements.onSelectionChanged.addListener(
       updateElementProperties);
 });
+var backgroundPageConnection = chrome.runtime.connect({
+    name: "devtools-page"
+});
