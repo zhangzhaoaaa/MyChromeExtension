@@ -64,3 +64,17 @@ console.log(sfFunc);*/
 /*
 var syntax = esprima.parse('EB_Common.EventProxy._events.axa[0].callback.toString()');
 console.log(syntax);*/
+
+var array = ["c1:cc,ccc","a1:aa,aaa","b1:bb,bbb"];
+
+var keys = [];
+array.forEach(function(current,index){
+    var key1 = {};
+    var a = current.split(":");
+    key1[a[0]] = a[1];
+    keys.push(key1);
+});
+keys.sort(function(a,b){
+    return Object.keys(a)[0].localeCompare(Object.keys(b)[0]);
+});
+console.log(keys);

@@ -38,14 +38,30 @@ document.getElementById("reload").addEventListener('click', function () {
 
 document.getElementById("start").addEventListener('click', function () {
     var libraries = localStorage.getItem('libraries');
-    //window.location.reload();
     setTimeout(function(){
         if (libraries != null){
             var libArr = libraries.split(";");
-            libArr.forEach(function(current,index,arr){ //;
-                var one = current.split(':');
-                var two = one[1].split(',');
-                addLibrary(one[0],two);
+            var keys = [];
+            libArr.forEach(function(current,index){
+                if (current){
+                    var key1 = {};
+                    var a = current.split(":");
+                    if (a.length > 0){
+                        key1[a[0]] = a[1];
+                        keys.push(key1);
+                    }
+                }
+            });
+            keys.sort(function(a,b){
+                return Object.keys(a)[0].localeCompare(Object.keys(b)[0]);
+            });
+            keys.forEach(function(current,index,arr){ //;
+                if (Object.keys(current).length > 0){
+                    var listenName = Object.keys(current)[0];
+                    var appNames = current[listenName];
+                    var appNameArray = appNames.split(',');
+                    addLibrary(listenName,appNameArray);
+                }
             });
         }
     },200);
